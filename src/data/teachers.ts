@@ -4,6 +4,7 @@ export const teachers = [
     name: "Mr. Anderson",
     subject: "Mathematics",
     email: "anderson@school.com",
+    phone: "+267 71234567",
     status: "Active",
   },
   {
@@ -11,6 +12,7 @@ export const teachers = [
     name: "Mrs. Johnson",
     subject: "English",
     email: "johnson@school.com",
+    phone: "+267 72345678",
     status: "Active",
   },
   {
@@ -18,6 +20,7 @@ export const teachers = [
     name: "Mr. Williams",
     subject: "Physics",
     email: "williams@school.com",
+    phone: "+267 73456789",
     status: "Inactive",
   },
   {
@@ -25,6 +28,7 @@ export const teachers = [
     name: "Mrs. Brown",
     subject: "Chemistry",
     email: "brown@school.com",
+    phone: "+267 74567890",
     status: "Active",
   },
   {
@@ -32,6 +36,7 @@ export const teachers = [
     name: "Mr. Davis",
     subject: "Computer Science",
     email: "davis@school.com",
+    phone: "+267 75678901",
     status: "Active",
   },
 ];
