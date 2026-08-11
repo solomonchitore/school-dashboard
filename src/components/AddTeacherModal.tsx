@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
-export type Teacher = {
+export interface Teacher {
   id: number;
   name: string;
   subject: string;
   email: string;
   phone: string;
   status: string;
-};
+}
 
 type Props = {
   isOpen: boolean;
@@ -16,7 +16,7 @@ type Props = {
   teacher?: Teacher | null;
 };
 
-function AddTeacherModal({
+export default function AddTeacherModal({
   isOpen,
   onClose,
   onSave,
@@ -48,7 +48,7 @@ function AddTeacherModal({
 
   const handleSave = () => {
     if (!name || !subject || !email || !phone) {
-      alert("Please complete all fields.");
+      alert("Please fill in all fields.");
       return;
     }
 
@@ -65,15 +65,13 @@ function AddTeacherModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8">
-
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+      <div className="bg-white rounded-xl shadow-xl p-8 w-full max-w-lg">
         <h2 className="text-2xl font-bold mb-6">
           {teacher ? "Edit Teacher" : "Add Teacher"}
         </h2>
 
         <div className="space-y-4">
-
           <input
             type="text"
             placeholder="Teacher Name"
@@ -111,33 +109,27 @@ function AddTeacherModal({
             onChange={(e) => setStatus(e.target.value)}
             className="w-full border rounded-lg p-3"
           >
-            <option>Active</option>
-            <option>Inactive</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
           </select>
-
         </div>
 
         <div className="flex justify-end gap-4 mt-8">
-
           <button
             onClick={onClose}
-            className="border px-6 py-3 rounded-lg"
+            className="px-5 py-2 border rounded-lg hover:bg-gray-100"
           >
             Cancel
           </button>
 
           <button
             onClick={handleSave}
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg"
+            className="px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
           >
             {teacher ? "Save Changes" : "Add Teacher"}
           </button>
-
         </div>
-
       </div>
     </div>
   );
 }
-
-export default AddTeacherModal;

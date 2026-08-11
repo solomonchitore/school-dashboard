@@ -5,13 +5,14 @@ import {
   Users,
   BookOpen,
   CalendarDays,
+  Award,
   Settings,
 } from "lucide-react";
 
 const menuItems = [
   {
     title: "Dashboard",
-    path: "/",
+    path: "/dashboard",
     icon: <LayoutDashboard size={20} />,
   },
   {
@@ -35,6 +36,11 @@ const menuItems = [
     icon: <CalendarDays size={20} />,
   },
   {
+    title: "Grades",
+    path: "/grades",
+    icon: <Award size={20} />,
+  },
+  {
     title: "Settings",
     path: "/settings",
     icon: <Settings size={20} />,
@@ -43,12 +49,30 @@ const menuItems = [
 
 function Sidebar() {
   return (
-    <aside className="w-64 bg-slate-900 text-white min-h-screen p-6">
-      <h1 className="text-2xl font-bold mb-10">
-        School Dashboard
-      </h1>
+    <aside className="w-72 bg-slate-950 text-white min-h-screen flex flex-col">
+      {/* LOGO */}
 
-      <nav className="space-y-2">
+      <div className="p-6 border-b border-slate-800">
+        <div className="flex items-center gap-3">
+          <div className="bg-blue-600 p-3 rounded-lg">
+            <GraduationCap size={28} />
+          </div>
+
+          <div>
+            <h1 className="text-xl font-bold">
+              School Dashboard
+            </h1>
+
+            <p className="text-sm text-slate-400">
+              Administrator
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* NAVIGATION */}
+
+      <nav className="flex-1 p-4 space-y-2">
         {menuItems.map((item) => (
           <NavLink
             key={item.title}
@@ -56,16 +80,29 @@ function Sidebar() {
             className={({ isActive }) =>
               `flex items-center gap-3 p-3 rounded-lg transition ${
                 isActive
-                  ? "bg-blue-600"
-                  : "hover:bg-slate-800"
+                  ? "bg-blue-600 text-white"
+                  : "text-slate-300 hover:bg-slate-800 hover:text-white"
               }`
             }
           >
             {item.icon}
+
             <span>{item.title}</span>
           </NavLink>
         ))}
       </nav>
+
+      {/* FOOTER */}
+
+      <div className="p-4 border-t border-slate-800">
+        <p className="text-sm text-slate-400">
+          Logged in as
+        </p>
+
+        <p className="font-semibold">
+          Administrator
+        </p>
+      </div>
     </aside>
   );
 }

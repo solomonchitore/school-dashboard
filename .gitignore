@@ -1,4 +1,7 @@
+# ==========================================
 # Logs
+# ==========================================
+
 logs
 *.log
 npm-debug.log*
@@ -7,18 +10,63 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# ==========================================
+# Dependencies
+# ==========================================
+
+node_modules/
+
+# ==========================================
+# Build output
+# ==========================================
+
+dist/
+dist-ssr/
+
+# ==========================================
+# Environment variables
+# ==========================================
+
+.env
+.env.*
+!.env.example
+
+# ==========================================
+# Local files
+# ==========================================
+
 *.local
 
+# ==========================================
 # Editor directories and files
+# ==========================================
+
 .vscode/*
 !.vscode/extensions.json
-.idea
+
+.idea/
 .DS_Store
+
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# ==========================================
+# OS files
+# ==========================================
+
+Thumbs.db
+ehthumbs.db
+
+# Local AI/editor agent files
+.agents/
+.claude/
+.windsurf/
+
+# Backend local agent files
+backend/.agents/
+backend/.claude/
+backend/.windsurf/
+backend/skills-lock.json

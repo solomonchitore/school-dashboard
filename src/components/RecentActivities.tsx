@@ -1,60 +1,50 @@
-import {
-  UserPlus,
-  BookOpen,
-  CalendarCheck,
-  GraduationCap,
-  Pencil,
-} from "lucide-react";
-
 const activities = [
   {
-    icon: <UserPlus className="text-blue-600" size={20} />,
-    title: "New student registered",
+    id: 1,
+    title: "New student added",
     description: "John Doe joined Form 5",
-    time: "2 minutes ago",
+    time: "2 min ago",
+    color: "bg-green-500",
   },
   {
-    icon: <CalendarCheck className="text-green-600" size={20} />,
+    id: 2,
     title: "Attendance updated",
-    description: "Attendance recorded for Grade 10",
-    time: "15 minutes ago",
+    description: "Form 4 attendance submitted",
+    time: "10 min ago",
+    color: "bg-blue-500",
   },
   {
-    icon: <BookOpen className="text-yellow-500" size={20} />,
-    title: "Course created",
-    description: "Computer Science added",
+    id: 3,
+    title: "Teacher assigned",
+    description: "Mr. Smith assigned to Mathematics",
+    time: "30 min ago",
+    color: "bg-yellow-500",
+  },
+  {
+    id: 4,
+    title: "Grades published",
+    description: "Mid-term results released",
     time: "1 hour ago",
-  },
-  {
-    icon: <GraduationCap className="text-purple-600" size={20} />,
-    title: "Grades uploaded",
-    description: "Semester results published",
-    time: "Yesterday",
-  },
-  {
-    icon: <Pencil className="text-red-500" size={20} />,
-    title: "Teacher updated profile",
-    description: "Mrs. Johnson edited her information",
-    time: "Yesterday",
+    color: "bg-red-500",
   },
 ];
 
 function RecentActivities() {
   return (
-    <div className="bg-white rounded-xl shadow-md p-6">
-      <h2 className="text-2xl font-bold mb-6">
+    <div className="bg-white rounded-2xl shadow-lg p-6">
+      <h2 className="text-xl font-bold mb-6">
         Recent Activities
       </h2>
 
       <div className="space-y-5">
-        {activities.map((activity, index) => (
+        {activities.map((activity) => (
           <div
-            key={index}
-            className="flex items-start gap-4 border-b pb-4 last:border-none"
+            key={activity.id}
+            className="flex items-start gap-4"
           >
-            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-              {activity.icon}
-            </div>
+            <div
+              className={`w-3 h-3 rounded-full mt-2 ${activity.color}`}
+            />
 
             <div className="flex-1">
               <h3 className="font-semibold">
@@ -64,11 +54,11 @@ function RecentActivities() {
               <p className="text-gray-500 text-sm">
                 {activity.description}
               </p>
-
-              <p className="text-xs text-gray-400 mt-1">
-                {activity.time}
-              </p>
             </div>
+
+            <span className="text-gray-400 text-xs whitespace-nowrap">
+              {activity.time}
+            </span>
           </div>
         ))}
       </div>

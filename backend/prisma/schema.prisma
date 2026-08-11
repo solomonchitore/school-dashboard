@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ==========================================
+// TEACHER
+// ==========================================
+
+model Teacher {
+  id      Int    @id @default(autoincrement())
+  name    String
+  subject String
+  email   String @unique
+  phone   String
+  status  String
+
+  user    User?
+}
+
+// ==========================================
+// STUDENT
+// ==========================================
+
+model Student {
+  id         Int          @id @default(autoincrement())
+  name       String
+  class      String
+  age        Int
+  status     String
+
+  attendance Attendance[]
+  grades     Grade[]
+}
+
+// ==========================================
+// COURSE
+// ==========================================
+
+model Course {
+  id          Int     @id @default(autoincrement())
+  name        String
+  code        String  @unique
+  description String?
+  status      String  @default("Active")
+
+  grades      Grade[]
+}
+
+// ==========================================
+// ATTENDANCE
+// ==========================================
+
+model Attendance {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  date      DateTime
+  status    String
+
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, date])
+}
+
+// ==========================================
+// GRADE
+// ==========================================
+
+model Grade {
+  id         Int      @id @default(autoincrement())
+  studentId  Int
+  courseId   Int
+  assessment String
+  mark       Float
+  grade      String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  course  Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, courseId, assessment])
+}
+
+// ==========================================
+// USER
+// ==========================================
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("Administrator")
+  status    String   @default("Active")
+
+  teacherId Int?     @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  teacher Teacher? @relation(fields: [teacherId], references: [id], onDelete: SetNull)
+}
